@@ -1,5 +1,6 @@
-# element-theme-chalk
-> element component chalk theme.
+# element-theme-robo
+
+> element component robo theme for baidu robo team
 
 
 ## Installation
