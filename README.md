@@ -1,24 +1,33 @@
-# element-theme-robo
+# element-theme-chalk
+> element component chalk theme.
 
-## Project setup
-```
-yarn install
-```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+## Installation
+```shell
+yarn install element-theme-robo -S
 ```
 
-### Compiles and minifies for production
-```
-yarn build
+## Usage
+
+Use Sass import
+```css
+@import 'element-theme-robo';
 ```
 
-### Lints and fixes files
-```
-yarn lint
+Or Use webpack
+```javascript
+import 'element-theme-robo';
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Or
+```html
+<link rel="stylesheet" href="path/to/node_modules/element-theme-robo/lib/index.css">
+```
+
+##  Import on demand
+```javascript
+import 'element-theme-robo/lib/input.css';
+import 'element-theme-robo/lib/select.css';
+
+// ...
+```
