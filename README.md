@@ -2,13 +2,13 @@
 
 > element component robo theme for baidu robo team
 
-
 ## Installation
+
 ```shell
 yarn install element-theme-robo -S
 ```
 
-## Usage
+## Usage By ElementUI
 
 Use Sass import
 
@@ -17,11 +17,13 @@ Use Sass import
 ```
 
 Or Use webpack
+
 ```javascript
 import 'element-theme-robo'
 ```
 
 Or
+
 ```html
 <link rel="stylesheet" href="path/to/node_modules/element-theme-robo/lib/index.css">
 ```
