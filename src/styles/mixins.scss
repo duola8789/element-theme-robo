@@ -1,0 +1,13 @@
+/**
+ * 可复用样式类, 在 SCSS 文件中可直接使用，例如 @include absCenter()
+ */
+// 线性渐变
+@mixin linear-transition($duration: 0.3s) {
+    transition: all linear $duration;
+}
+
+// 按钮交互优化样式
+@mixin nice-btn() {
+    cursor: pointer;
+    user-select: none;
+}

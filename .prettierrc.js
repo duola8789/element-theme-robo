@@ -4,7 +4,7 @@
  */
 module.exports = {
     // max 120 characters per line
-    printWidth: 150,
+    printWidth: 120,
     // use 4 spaces for indentation
     tabWidth: 4,
     // use spaces instead of indentations
@@ -42,10 +42,10 @@ module.exports = {
     vueIndentScriptAndStyle: false,
     overrides: [
         {
-            'files': ['*.css', '*.less', '*.sass', '*.scss'],
-            'options': {
-                'singleQuote': true
+            files: ['*.css', '*.less', '*.sass', '*.scss'],
+            options: {
+                singleQuote: true
             }
-        },
+        }
     ]
 };
