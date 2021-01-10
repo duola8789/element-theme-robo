@@ -147,6 +147,16 @@
     @include m(collapse) {
         width: 64px;
 
+        & svg:first-child[class^='icon'] {
+            margin-right: 0;
+        }
+
+        > .el-menu-item {
+            > .el-tooltip {
+                padding: 0 24px !important;
+            }
+        }
+
         > .el-menu-item,
         > .el-submenu > .el-submenu__title {
             padding-right: 24px;
@@ -202,7 +212,7 @@
 
     @include m(popup) {
         z-index: 100;
-        min-width: 200px;
+        min-width: 120px;
         border: none;
         padding: 4px 0;
         border-radius: $--border-radius-small;
@@ -210,6 +220,10 @@
 
         .el-menu-item {
             margin: 4px 8px;
+
+            &:not(.is-active):hover {
+                background: $--menu-background-color;
+            }
         }
 
         &-bottom-start {
@@ -262,11 +276,19 @@
     & .el-menu-item {
         margin: 4px 8px;
         padding-left: 48px !important;
+
+        &:not(.is-active):hover {
+            background: $--menu-background-color;
+        }
     }
 
     & .el-submenu__title {
         color: #6f6f83;
         border: none;
+
+        &:hover {
+            color: #fff;
+        }
     }
 
     @include when(active) {
