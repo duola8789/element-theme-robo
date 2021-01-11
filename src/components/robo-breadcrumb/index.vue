@@ -33,7 +33,7 @@ export default class RoboBreadcrumb extends Vue {
         const {matched, meta = {}, query} = this.$route;
 
         return matched
-            .filter((v) => v.meta?.title && v.meta.title !== meta.title)
+            .filter((v) => v.meta?.breadcrumbTitle && v.meta.breadcrumbTitle !== meta.breadcrumbTitle)
             .map((v) => ({
                 path: v.path,
                 title: v.meta.breadcrumbTitle,

@@ -3,6 +3,7 @@
         <el-container class="root-container">
             <robo-aside-nav-menu :menus="menus" />
             <el-main class="layout-main">
+                <robo-breadcrumb :route="true" />
                 <router-view />
             </el-main>
         </el-container>
@@ -13,10 +14,11 @@
 import {Component, Vue} from 'vue-property-decorator';
 import {MENU_CONFIG} from '@/config';
 
+import RoboBreadcrumb from '@/components/robo-breadcrumb/index.vue';
 import RoboAsideNavMenu from '@/components/robo-aside-nav/index.vue';
 
 @Component({
-    components: {RoboAsideNavMenu}
+    components: {RoboAsideNavMenu, RoboBreadcrumb}
 })
 export default class App extends Vue {
     menus = MENU_CONFIG;
