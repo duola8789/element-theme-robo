@@ -1,11 +1,14 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import {lazyLoadHelper, ROUTE_CONFIGS} from '@/config';
+import {ROUTE_CONFIGS} from '@/config';
 
 Vue.use(VueRouter);
 
 const routes = [
-    {path: '/', component: lazyLoadHelper('home')},
+    {
+        path: '/',
+        redirect: '/home'
+    },
     ...ROUTE_CONFIGS,
     {
         path: '*',

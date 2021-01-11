@@ -3,38 +3,39 @@
  * @param componentPath `./src/views`下的文件名
  */
 import {RouteConfig} from 'vue-router';
+import {getRouteConfigHelper, getMenuConfigHelper} from '@/config/helper';
+import {TypePageConfig, TypeMenuConfig} from '@/config/types';
 
-export const lazyLoadHelper = (componentPath: string): any => {
-    if (process.env.NODE_ENV === 'development') {
-        const comp = require(`@/views/${componentPath}.vue`);
-        return comp.default || comp;
-    }
-
-    return () => import(/* webpackChunkName: "view-[request]-[index]" */ `@/views/${componentPath}.vue`);
-};
-
-export const PAGE_CONFIGS = [
+export const PAGE_CONFIGS: TypePageConfig[] = [
+    {
+        path: '/home',
+        menuTitle: 'Home',
+        menuIcon: 'icon-home',
+        componentPath: 'home'
+    },
     {
         path: '/basic',
-        title: 'Basic',
-        icon: 'icon-storage',
+        menuTitle: 'Basic',
+        menuIcon: 'icon-storage',
         children: [
-            {path: 'button', component: lazyLoadHelper('button'), title: 'Button'},
-            {path: 'icon', component: lazyLoadHelper('button'), title: 'Icon'}
+            {path: 'button', componentPath: 'button', menuTitle: 'Button'},
+            {path: 'icon', componentPath: 'button', menuTitle: 'Symbol Icon'}
         ]
     },
     {
         path: '/form',
-        title: 'Form',
-        icon: 'icon-content-copy',
-        children: [{path: 'select', component: lazyLoadHelper('button'), title: 'Select'}]
+        menuTitle: 'Form',
+        menuIcon: 'icon-content-copy',
+        children: [{path: 'select', componentPath: 'button', menuTitle: 'Select'}]
+    },
+    {
+        path: '/navigation',
+        menuTitle: 'Navigation',
+        menuIcon: 'icon-signal-wifi-statusba2',
+        children: [{path: 'breadcrumb', componentPath: 'breadcrumb', menuTitle: 'Breadcrumb'}]
     }
 ];
 
-export const ROUTE_CONFIGS: RouteConfig[] = PAGE_CONFIGS.reduce((t, v) => {
-    const route = v.children.map((child) => ({
-        path: `${v.path}/${child.path}`,
-        component: child.component
-    }));
-    return [...t, ...route];
-}, [] as RouteConfig[]);
+export const ROUTE_CONFIGS: RouteConfig[] = getRouteConfigHelper(PAGE_CONFIGS);
+
+export const MENU_CONFIG: TypeMenuConfig[] = getMenuConfigHelper(PAGE_CONFIGS);

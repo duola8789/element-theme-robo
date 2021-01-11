@@ -1,42 +1,7 @@
 <template>
     <div id="app">
         <el-container class="root-container">
-            <el-aside class="root-aside" width="auto">
-                <div class="aside-header">
-                    <robo-symbol-icon
-                        class="collapse-icon"
-                        href="icon-view-headline"
-                        @click.native="isCollapsed = !isCollapsed"
-                    />
-                </div>
-                <el-menu
-                    class="layout-aside-menu"
-                    :router="true"
-                    :collapse="isCollapsed"
-                    :default-active="$route.path"
-                    :unique-opened="false"
-                >
-                    <template v-for="menu in menus">
-                        <el-submenu :key="menu.path" :index="menu.path">
-                            <template slot="title">
-                                <robo-symbol-icon :href="menu.icon" />
-                                <span slot="title">{{ menu.title }}</span>
-                            </template>
-                            <el-menu-item
-                                v-for="item in menu.children"
-                                :key="getItemPath(menu.path, item.path)"
-                                :index="getItemPath(menu.path, item.path)"
-                            >
-                                <span>{{ item.title }}</span>
-                            </el-menu-item>
-                        </el-submenu>
-                    </template>
-                    <el-menu-item index="/404">
-                        <robo-symbol-icon href="icon-storage" />
-                        <span>404</span>
-                    </el-menu-item>
-                </el-menu>
-            </el-aside>
+            <robo-aside-nav-menu :menus="menus" />
             <el-main class="layout-main">
                 <router-view />
             </el-main>
@@ -46,17 +11,15 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-import {PAGE_CONFIGS} from '@/config';
+import {MENU_CONFIG} from '@/config';
 
-@Component
+import RoboAsideNavMenu from '@/components/robo-aside-nav/index.vue';
+
+@Component({
+    components: {RoboAsideNavMenu}
+})
 export default class App extends Vue {
-    isCollapsed: boolean = false;
-
-    menus = PAGE_CONFIGS;
-
-    getItemPath(parentPath: string, childPath: string) {
-        return `${parentPath}/${childPath}`;
-    }
+    menus = MENU_CONFIG;
 }
 </script>
 
