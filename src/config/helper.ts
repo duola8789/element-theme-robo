@@ -25,17 +25,29 @@ function getRouteMetaHelper(pageConfig: TypePageConfig): TypeRouteMeta {
 // 根据 PAGE_CONFIGS 获得路由列表
 export function getRouteConfigHelper(pageConfigs: TypePageConfig[]): RouteConfig[] {
     return pageConfigs.reduce((t, v) => {
-        const current: RouteConfig = {
-            path: v.path,
-            component: v.componentPath ? lazyLoadHelper(v.componentPath) : undefined,
-            meta: getRouteMetaHelper(v)
-        };
+        const current: RouteConfig = v.componentPath
+            ? {
+                  path: v.path,
+                  component: lazyLoadHelper(v.componentPath),
+                  meta: getRouteMetaHelper(v)
+              }
+            : {
+                  path: v.path,
+                  meta: getRouteMetaHelper(v)
+              };
         if (Array.isArray(v.children) && v.children.length > 0) {
-            current.children = v.children.map((child) => ({
-                path: `${v.path}/${child.path}`,
-                component: child.componentPath ? lazyLoadHelper(child.componentPath) : undefined,
-                meta: getRouteMetaHelper(child)
-            }));
+            current.children = v.children.map((child) =>
+                child.componentPath
+                    ? {
+                          path: child.path,
+                          component: lazyLoadHelper(child.componentPath),
+                          meta: getRouteMetaHelper(child)
+                      }
+                    : {
+                          path: `${v.path}/${child.path}`,
+                          meta: getRouteMetaHelper(child)
+                      }
+            );
         }
         return [...t, current];
     }, [] as RouteConfig[]);

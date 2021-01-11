@@ -17,16 +17,17 @@ export const PAGE_CONFIGS: TypePageConfig[] = [
         path: '/basic',
         menuTitle: 'Basic',
         menuIcon: 'icon-storage',
+        componentPath: 'basic/index',
         children: [
-            {path: 'button', componentPath: 'button', menuTitle: 'Button'},
-            {path: 'icon', componentPath: 'button', menuTitle: 'Symbol Icon'}
+            {path: 'button', componentPath: 'basic/pages/button', menuTitle: 'Button'},
+            {path: 'icon', componentPath: 'basic/pages/button', menuTitle: 'Symbol Icon'}
         ]
     },
     {
         path: '/form',
         menuTitle: 'Form',
         menuIcon: 'icon-content-copy',
-        children: [{path: 'select', componentPath: 'button', menuTitle: 'Select'}]
+        children: [{path: 'select', componentPath: 'basic/pages/button', menuTitle: 'Select'}]
     },
     {
         path: '/navigation',
