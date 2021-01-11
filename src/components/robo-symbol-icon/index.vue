@@ -1,5 +1,5 @@
 <template>
-    <svg class="icon-font" aria-hidden="true">
+    <svg class="robo-icon" aria-hidden="true">
         <use :xlink:href="iconHref"></use>
     </svg>
 </template>
@@ -18,7 +18,7 @@ export default class RoboSymbolIcon extends Vue {
 </script>
 
 <style scoped lang="scss">
-.icon-font {
+.robo-icon {
     color: inherit;
 
     @include nice-btn();
