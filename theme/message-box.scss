@@ -7,11 +7,10 @@
 @include b(message-box) {
     display: inline-block;
     width: $--msgbox-width;
-    padding-bottom: 10px;
+    padding: 0 16px 24px;
     vertical-align: middle;
     background-color: $--color-white;
     border-radius: $--msgbox-border-radius;
-    border: 1px solid $--border-color-lighter;
     font-size: $--messagebox-font-size;
     box-shadow: $--box-shadow-light;
     text-align: left;
@@ -37,8 +36,8 @@
 
     @include e(header) {
         position: relative;
-        padding: $--msgbox-padding-primary;
-        padding-bottom: 10px;
+        padding: $--msgbox-padding-primary 0;
+        border-bottom: 1px solid #edf1f6;
     }
 
     @include e(title) {
@@ -52,7 +51,7 @@
     @include e(headerbtn) {
         position: absolute;
         top: $--msgbox-padding-primary;
-        right: $--msgbox-padding-primary;
+        right: 0;
         padding: 0;
         border: none;
         outline: none;
@@ -61,7 +60,7 @@
         cursor: pointer;
 
         .el-message-box__close {
-            color: $--color-info;
+            color: #000;
         }
 
         &:focus,
@@ -73,7 +72,7 @@
     }
 
     @include e(content) {
-        padding: 10px $--msgbox-padding-primary;
+        padding: 40px 0;
         color: $--messagebox-content-color;
         font-size: $--messagebox-content-font-size;
     }
@@ -96,8 +95,9 @@
     @include e(status) {
         position: absolute;
         top: 50%;
+        left: 32px;
         transform: translateY(-50%);
-        font-size: 24px !important;
+        font-size: 22px !important;
 
         &::before {
             // 防止图标切割
@@ -105,8 +105,7 @@
         }
 
         + .el-message-box__message {
-            padding-left: 36px;
-            padding-right: 12px;
+            padding-left: 64px;
         }
 
         &.el-icon-success {
@@ -143,55 +142,24 @@
     }
 
     @include e(btns) {
-        padding: 5px 15px 0;
-        text-align: right;
+        text-align: center;
+
+        button {
+            @include button-size(
+                $--button-padding-vertical,
+                $--button-padding-horizontal,
+                $--button-font-size,
+                $--button-border-radius
+            );
+        }
 
         & button:nth-child(2) {
-            margin-left: 10px;
+            margin-left: 16px;
         }
     }
 
     @include e(btns-reverse) {
         flex-direction: row-reverse;
-    }
-
-    // centerAlign 布局
-    @include m(center) {
-        padding-bottom: 30px;
-
-        @include e(header) {
-            padding-top: 30px;
-        }
-
-        @include e(title) {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @include e(status) {
-            position: relative;
-            top: auto;
-            padding-right: 5px;
-            text-align: center;
-            transform: translateY(-1px);
-        }
-
-        @include e(message) {
-            margin-left: 0;
-        }
-
-        @include e((btns, content)) {
-            text-align: center;
-        }
-
-        @include e(content) {
-            $padding-horizontal: $--msgbox-padding-primary + 12px;
-
-            padding-left: $padding-horizontal;
-            padding-right: $padding-horizontal;
-        }
     }
 }
 

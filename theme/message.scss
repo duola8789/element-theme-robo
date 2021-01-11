@@ -18,10 +18,9 @@
     padding: $--message-padding;
     display: flex;
     align-items: center;
-
-    @include when(center) {
-        justify-content: center;
-    }
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 #c1c6cd;
+    color: $--color-text-regular;
 
     @include when(closable) {
         .el-message__content {
@@ -33,41 +32,9 @@
         margin: 0;
     }
 
-    @include m(info) {
-        .el-message__content {
-            color: $--message-info-font-color;
-        }
-    }
-
-    @include m(success) {
-        background-color: $--color-success-lighter;
-        border-color: $--color-success-light;
-
-        .el-message__content {
-            color: $--message-success-font-color;
-        }
-    }
-
-    @include m(warning) {
-        background-color: $--color-warning-lighter;
-        border-color: $--color-warning-light;
-
-        .el-message__content {
-            color: $--message-warning-font-color;
-        }
-    }
-
-    @include m(error) {
-        background-color: $--color-danger-lighter;
-        border-color: $--color-danger-light;
-
-        .el-message__content {
-            color: $--message-danger-font-color;
-        }
-    }
-
     @include e(icon) {
         margin-right: 10px;
+        font-size: 20px;
     }
 
     @include e(content) {

@@ -1,6 +1,6 @@
 <template>
-    <div class="button-page-container">
-        <el-card class="card-item">
+    <div class="page-container">
+        <el-card>
             <p slot="header">基础用法</p>
             <el-button>默认按钮</el-button>
             <el-button type="primary">主要按钮</el-button>
@@ -29,11 +29,3 @@ import {Component, Vue} from 'vue-property-decorator';
 @Component
 export default class ButtonPage extends Vue {}
 </script>
-
-<style scoped lang="scss">
-.button-page-container {
-    .card-item {
-        margin-bottom: 16px;
-    }
-}
-</style>

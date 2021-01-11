@@ -30,6 +30,16 @@ export const PAGE_CONFIGS: TypePageConfig[] = [
         children: [{path: 'select', componentPath: 'basic/pages/button', menuTitle: 'Select'}]
     },
     {
+        path: '/notice',
+        menuTitle: 'Notice',
+        menuIcon: 'icon-hearing',
+        componentPath: 'notice/index',
+        children: [
+            {path: 'message', componentPath: 'notice/pages/message', menuTitle: 'Message'},
+            {path: 'message-box', componentPath: 'notice/pages/message-box', menuTitle: 'MessageBox'}
+        ]
+    },
+    {
         path: '/navigation',
         menuTitle: 'Navigation',
         menuIcon: 'icon-signal-wifi-statusba2',

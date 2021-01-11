@@ -103,4 +103,14 @@ input:focus::-webkit-contacts-auto-fill-button {
     border-radius: 5px;
     background-color: #484b56;
 }
+
+.page-container {
+    > .el-card {
+        margin-bottom: 16px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
 </style>

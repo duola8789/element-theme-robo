@@ -31,7 +31,7 @@ $--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default; /
 $--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; /* d9ecff */
 $--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; /* ecf5ff */
 /// color|1|Functional Color|1
-$--color-success: #67c23a !default;
+$--color-success: #1cbc9d !default;
 /// color|1|Functional Color|1
 $--color-warning: #e6a23c !default;
 /// color|1|Functional Color|1
@@ -339,15 +339,15 @@ $--alert-icon-large-size: 28px !default;
 /* MessageBox
 -------------------------- */
 /// color||Color|0
-$--messagebox-title-color: $--color-text-primary !default;
-$--msgbox-width: 420px !default;
+$--messagebox-title-color: #181c32 !default;
+$--msgbox-width: 368px !default;
 $--msgbox-border-radius: 4px !default;
 /// fontSize||Font|1
-$--messagebox-font-size: $--font-size-large !default;
+$--messagebox-font-size: $--font-size-base !default;
 /// fontSize||Font|1
 $--messagebox-content-font-size: $--font-size-base !default;
 /// color||Color|0
-$--messagebox-content-color: $--color-text-regular !default;
+$--messagebox-content-color: #6e768e !default;
 /// fontSize||Font|1
 $--messagebox-error-font-size: 12px !default;
 $--msgbox-padding-primary: 16px !default;
@@ -363,9 +363,9 @@ $--messagebox-danger-color: $--color-danger !default;
 /* Message
 -------------------------- */
 $--message-shadow: $--box-shadow-base !default;
-$--message-min-width: 380px !default;
-$--message-background-color: #edf2fc !default;
-$--message-padding: 15px 15px 15px 20px !default;
+$--message-min-width: 180px !default;
+$--message-background-color: #fff !default;
+$--message-padding: 16px 32px !default;
 /// color||Color|0
 $--message-close-icon-color: $--color-text-placeholder !default;
 /// height||Other|4
