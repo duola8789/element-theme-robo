@@ -72,13 +72,15 @@
     }
 
     @include e(content) {
-        padding: 40px 0;
+        padding: 40px 32px;
         color: $--messagebox-content-color;
         font-size: $--messagebox-content-font-size;
     }
 
     @include e(container) {
-        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     @include e(input) {
@@ -93,19 +95,13 @@
     }
 
     @include e(status) {
-        position: absolute;
-        top: 50%;
-        left: 32px;
-        transform: translateY(-50%);
+        margin-right: 8px;
         font-size: 22px !important;
+        vertical-align: middle;
 
         &::before {
             // 防止图标切割
             padding-left: 1px;
-        }
-
-        + .el-message-box__message {
-            padding-left: 64px;
         }
 
         &.el-icon-success {
@@ -127,6 +123,7 @@
 
     @include e(message) {
         margin: 0;
+        text-align: justify;
 
         & p {
             margin: 0;
