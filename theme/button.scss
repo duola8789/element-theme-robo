@@ -6,7 +6,6 @@
 
 @include b(button) {
     display: inline-block;
-    line-height: 1;
     white-space: nowrap;
     cursor: pointer;
     background: $--button-default-background-color;
@@ -24,10 +23,15 @@
     @include utils-user-select(none);
 
     & + & {
-        margin-left: 10px;
+        margin-left: 16px;
     }
 
-    @include button-size($--button-padding-vertical, $--button-padding-horizontal, $--button-font-size, $--button-border-radius);
+    @include button-size(
+        $--button-padding-vertical,
+        $--button-padding-horizontal,
+        $--button-font-size,
+        $--button-border-radius
+    );
 
     &:hover,
     &:focus {
@@ -48,7 +52,16 @@
 
     & [class*='el-icon-'] {
         & + span {
-            margin-left: 5px;
+            margin-left: 8px;
+        }
+    }
+
+    & .robo-icon {
+        font-size: calc(100% + 2px);
+        vertical-align: middle;
+
+        & + span {
+            margin-left: 8px;
         }
     }
 
@@ -124,19 +137,39 @@
         padding: $--button-padding-vertical;
     }
     @include m(primary) {
-        @include button-variant($--button-primary-font-color, $--button-primary-background-color, $--button-primary-border-color);
+        @include button-variant(
+            $--button-primary-font-color,
+            $--button-primary-background-color,
+            $--button-primary-border-color
+        );
     }
     @include m(success) {
-        @include button-variant($--button-success-font-color, $--button-success-background-color, $--button-success-border-color);
+        @include button-variant(
+            $--button-success-font-color,
+            $--button-success-background-color,
+            $--button-success-border-color
+        );
     }
     @include m(warning) {
-        @include button-variant($--button-warning-font-color, $--button-warning-background-color, $--button-warning-border-color);
+        @include button-variant(
+            $--button-warning-font-color,
+            $--button-warning-background-color,
+            $--button-warning-border-color
+        );
     }
     @include m(danger) {
-        @include button-variant($--button-danger-font-color, $--button-danger-background-color, $--button-danger-border-color);
+        @include button-variant(
+            $--button-danger-font-color,
+            $--button-danger-background-color,
+            $--button-danger-border-color
+        );
     }
     @include m(info) {
-        @include button-variant($--button-info-font-color, $--button-info-background-color, $--button-info-border-color);
+        @include button-variant(
+            $--button-info-font-color,
+            $--button-info-background-color,
+            $--button-info-border-color
+        );
     }
     @include m(medium) {
         @include button-size(
