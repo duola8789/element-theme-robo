@@ -24,8 +24,7 @@ export default class ButtonPage extends Vue {
         this.$message({
             message: '这是一条消这是一条消息这是一条消息这是一条消息这是一条消息这是一条消息息',
             type: 'info',
-            showClose,
-            duration
+            showClose
         });
     }
 
