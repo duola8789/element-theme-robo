@@ -7,7 +7,8 @@
         "serve": "vue-cli-service serve & yarn watch",
         "build-theme": "gulp build",
         "lint": "vue-cli-service lint",
-        "watch": "gulp watch"
+        "watch": "gulp watch",
+        "prettier": "prettier --write '{src,theme}/**/*.{vue,ts,js,less,css,scss}'"
     },
     "main": "lib/index.css",
     "files": [
