@@ -170,6 +170,17 @@
             $--button-info-background-color,
             $--button-info-border-color
         );
+
+        &.is-disabled {
+            &,
+            &:hover,
+            &:focus,
+            &:active {
+                color: $--button-disabled-font-color;
+                background-color: $--button-disabled-background-color;
+                border-color: $--button-disabled-border-color;
+            }
+        }
     }
     @include m(medium) {
         @include button-size(

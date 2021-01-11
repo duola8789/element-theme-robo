@@ -580,11 +580,11 @@ $--button-danger-font-color: $--color-white !default;
 /// color||Color|0
 $--button-danger-background-color: $--color-danger !default;
 /// color||Color|0
-$--button-info-border-color: $--color-info !default;
+$--button-info-border-color: $--color-primary !default;
 /// color||Color|0
-$--button-info-font-color: $--color-white !default;
+$--button-info-font-color: $--color-primary !default;
 /// color||Color|0
-$--button-info-background-color: $--color-info !default;
+$--button-info-background-color: $--color-white !default;
 
 $--button-hover-tint-percent: 20% !default;
 $--button-active-shade-percent: 10% !default;

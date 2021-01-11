@@ -1,12 +1,16 @@
 <template>
     <div class="page-container">
-        <el-card>
-            <p slot="header">基础用法</p>
+        <el-card header="基础用法">
             <el-button>默认按钮</el-button>
             <el-button type="primary">主要按钮</el-button>
+            <el-button type="info">信息按钮（替代幽灵按钮）</el-button>
         </el-card>
-        <el-card>
-            <p slot="header">图标按钮</p>
+        <el-card header="禁用状态">
+            <el-button disabled>默认按钮</el-button>
+            <el-button type="primary" disabled>主要按钮</el-button>
+            <el-button type="info" disabled>信息按钮（替代幽灵按钮）</el-button>
+        </el-card>
+        <el-card header="图标按钮">
             <el-button>
                 <i class="el-icon-search"></i>
                 <span>搜索</span>
