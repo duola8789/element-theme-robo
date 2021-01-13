@@ -53,11 +53,3 @@ export default class ButtonPage extends Vue {
     }
 }
 </script>
-
-<style scoped lang="scss">
-.button-page-container {
-    .card-item {
-        margin-bottom: 16px;
-    }
-}
-</style>

@@ -9,6 +9,13 @@
     transform: translate(-50%, -50%);
 }
 
+// 单行文字剪切
+@mixin text-overflow() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 // 线性渐变
 @mixin linear-transition($duration: 0.3s) {
     transition: all linear $duration;
@@ -18,4 +25,22 @@
 @mixin nice-btn() {
     cursor: pointer;
     user-select: none;
+}
+
+// ElementUI select 前置标题宽度
+@mixin ele-select-prefix($wordLength) {
+    .el-input.el-input--prefix {
+        .el-input__inner {
+            padding-left: 40px + $wordLength * 8;
+        }
+    }
+}
+
+// ElementUI select 后置标题宽度
+@mixin ele-select-suffix($wordLength) {
+    .el-input.el-input--suffix {
+        .el-input__inner {
+            padding-right: 40px + $wordLength * 8;
+        }
+    }
 }

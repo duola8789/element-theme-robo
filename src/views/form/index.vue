@@ -6,5 +6,5 @@
 import {Component, Vue} from 'vue-property-decorator';
 
 @Component
-export default class NoticePageIndex extends Vue {}
+export default class FormPageIndex extends Vue {}
 </script>
