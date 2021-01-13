@@ -11,15 +11,18 @@
             <template v-if="menu.children && menu.children.length > 0">
                 <el-submenu :key="menu.path" :index="menu.path">
                     <template slot="title">
-                        <robo-symbol-icon :href="menu.icon || defaultIcon" />
+                        <robo-symbol-icon :href="menuIcon(menu.icon, menu.path)" />
                         <span slot="title">{{ menu.title }}</span>
                     </template>
                     <el-menu-item
                         v-for="item in menu.children"
                         :key="getItemPath(menu.path, item.path)"
                         :index="getItemPath(menu.path, item.path)"
+                        :class="textOverflow ? '' : 'text-overflow'"
+                        :title="textOverflow ? '' : item.title"
                     >
-                        <span>{{ item.title }}</span>
+                        <robo-overflow-text v-if="textOverflow" :force="true" :content="item.title" />
+                        <span v-else>{{ item.title }}</span>
                     </el-menu-item>
                 </el-submenu>
             </template>
@@ -42,15 +45,32 @@
 import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 import {TypeMenuConfig} from './types';
 
+import RoboOverflowText from '@/components/robo-overflow-text/index.vue';
 const DEFAULT_ICON: string = 'icon-sentiment-very-dissa';
 
-@Component
+@Component({
+    components: {RoboOverflowText}
+})
 export default class RoboAsideNavMenu extends Vue {
     @Prop({type: Boolean, required: true}) readonly isCollapsed!: boolean;
     @Prop({type: Array, required: true}) readonly menus!: TypeMenuConfig[];
+    @Prop({type: Boolean, default: false}) readonly textOverflow!: boolean;
+    @Prop({type: Boolean, default: false}) readonly activeIcon!: boolean;
 
     defaultIcon: string = DEFAULT_ICON;
     defaultActive = '';
+
+    // 与视觉同学的约定，导航选中时，替换为 icon-xxx-solid 的实心图标
+    menuIcon(iconName: string, menuPath: string) {
+        if (!iconName) {
+            return this.defaultIcon;
+        }
+        if (!this.activeIcon) {
+            return iconName;
+        }
+        const isActive = this.defaultActive.startsWith(menuPath);
+        return isActive ? `${iconName}-solid` : iconName;
+    }
 
     getItemPath(parentPath: string, childPath: string) {
         return `${parentPath}${childPath.startsWith('/') ? childPath : '/' + childPath}`;
@@ -73,6 +93,10 @@ export default class RoboAsideNavMenu extends Vue {
 .layout-aside-menu {
     &:not(.el-menu--collapse) {
         width: 208px;
+    }
+
+    .text-overflow {
+        @include text-overflow();
     }
 }
 </style>
