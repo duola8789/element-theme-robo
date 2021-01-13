@@ -29,7 +29,7 @@
             <!-- 没有子菜单 -->
             <template v-else>
                 <el-menu-item :key="menu.path" :index="menu.path">
-                    <robo-symbol-icon :href="menu.icon || defaultIcon" />
+                    <robo-symbol-icon :href="menuIcon(menu.icon, menu.path)" />
                     <span slot="title">{{ menu.title }}</span>
                 </el-menu-item>
             </template>
@@ -46,7 +46,6 @@ import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 import {TypeMenuConfig} from './types';
 
 import RoboOverflowText from '@/components/robo-overflow-text/index.vue';
-const DEFAULT_ICON: string = 'icon-sentiment-very-dissa';
 
 @Component({
     components: {RoboOverflowText}
@@ -57,14 +56,10 @@ export default class RoboAsideNavMenu extends Vue {
     @Prop({type: Boolean, default: false}) readonly textOverflow!: boolean;
     @Prop({type: Boolean, default: false}) readonly activeIcon!: boolean;
 
-    defaultIcon: string = DEFAULT_ICON;
     defaultActive = '';
 
     // 与视觉同学的约定，导航选中时，替换为 icon-xxx-solid 的实心图标
     menuIcon(iconName: string, menuPath: string) {
-        if (!iconName) {
-            return this.defaultIcon;
-        }
         if (!this.activeIcon) {
             return iconName;
         }
