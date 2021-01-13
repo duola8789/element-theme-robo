@@ -14,7 +14,7 @@
             :class="isInputActive ? 'is-active' : ''"
             :style="{width: width + 'px'}"
         >
-            <span class="robo-simple-multi-title">{{ title }}</span>
+            <span v-if="!hideTitle && cacheTitle" class="robo-simple-multi-title">{{ cacheTitle }}</span>
             <div class="robo-simple-multi-input">
                 <div v-if="inputValue" class="input-value-container">
                     <p v-if="isSelectAll" class="input-value-all">{{ inputValue }}</p>
@@ -30,37 +30,77 @@
             <i class="robo-simple-multi-select-icon el-icon-arrow-up"></i>
         </div>
         <div class="robo-simple-multi-content">
-            <div class="select-all">
-                <robo-select-all :value.sync="isSelectAll" :show-save-btn="false" @clear="onClear" />
-            </div>
-            <el-checkbox-group v-model="selectedList">
-                <ul class="options-list">
-                    <li v-for="option in options" :key="option.value" class="option-item">
-                        <el-checkbox :label="option.value">
-                            {{ option.label }}
-                        </el-checkbox>
-                    </li>
-                </ul>
-            </el-checkbox-group>
+            <template>
+                <div class="option-header" :class="noOptions ? 'hide-border' : ''">
+                    <robo-select-all
+                        v-if="!noOptions"
+                        :value.sync="isSelectAll"
+                        :show-save-btn="false"
+                        @clear="onClear"
+                    />
+                    <p v-else class="empty">暂无数据</p>
+                </div>
+                <el-checkbox-group v-model="selectedList">
+                    <ul class="options-list">
+                        <li v-for="option in cacheOptions" :key="option.value" class="option-item">
+                            <el-checkbox :label="option.value">
+                                {{ option.label }}
+                            </el-checkbox>
+                        </li>
+                    </ul>
+                </el-checkbox-group>
+            </template>
         </div>
     </el-popover>
 </template>
 
 <script lang="ts">
-import {Component, Vue, Prop, Emit, Watch} from 'vue-property-decorator';
+import {Component, Vue, Prop, Emit} from 'vue-property-decorator';
 
 import RoboSelectAll from '@/components/robo-select-all/index.vue';
+import {TypeOptionsKeys} from '@/plugins/robo-option-cache/config';
 
 @Component({
     components: {RoboSelectAll}
 })
 export default class RoboSimpleMultiSelect extends Vue {
-    @Prop({type: Array, required: true}) options!: {value: any; label: string}[];
-    @Prop({type: String}) optionKey!: string[];
+    @Prop({type: [Array]}) options!: {value: any; label: string}[];
+    @Prop({type: [Object, String]}) cacheKey!: TypeOptionsKeys;
+
     @Prop({type: Array, required: true}) value!: Array<string | number>;
+    @Prop({type: String}) title!: string;
+    @Prop({type: Boolean, default: false}) hideTitle!: boolean;
     @Prop({type: Number, default: 280}) width!: string;
-    @Prop({type: String, default: '标题名称'}) title!: string;
     @Prop({type: String, default: '请选择'}) placeholder!: string;
+
+    isInputActive = false;
+
+    get cacheOptions() {
+        if (Array.isArray(this.options)) {
+            return this.options;
+        }
+        if (!this.cacheKey) {
+            throw new Error('options 和 cacheKey 至少传一个作为 Prop！');
+        }
+        if (!this.$roboOptions.cache[this.cacheKey]) {
+            throw new Error(`配置中不存在 ${this.cacheKey}，需要提前配置！`);
+        }
+        this.$roboOptions.getOptions(this.cacheKey);
+        return this.$roboOptions.cache[this.cacheKey].options;
+    }
+
+    get cacheTitle() {
+        if (this.title) {
+            return this.title;
+        }
+        if (this.hideTitle || !this.cacheKey) {
+            return '';
+        }
+        if (!this.$roboOptions.cache[this.cacheKey]) {
+            throw new Error(`配置中不存在 ${this.cacheKey}，需要提前配置！`);
+        }
+        return this.$roboOptions.cache[this.cacheKey].title;
+    }
 
     get selectedList() {
         return [...this.value];
@@ -70,9 +110,14 @@ export default class RoboSimpleMultiSelect extends Vue {
         this.emitChange(newVal);
     }
 
-    isInputActive = false;
+    get noOptions() {
+        return !Array.isArray(this.cacheOptions) || this.cacheOptions.length === 0;
+    }
 
     get inputValue() {
+        if (this.noOptions) {
+            return '';
+        }
         if (this.isSelectAll) {
             return '已全选';
         }
@@ -80,10 +125,10 @@ export default class RoboSimpleMultiSelect extends Vue {
     }
 
     get isSelectAll() {
-        return this.options.length === this.selectedList.length;
+        return this.cacheOptions.length === this.selectedList.length;
     }
     set isSelectAll(isSelectAll: boolean) {
-        this.selectedList = isSelectAll ? this.options.map((v) => v.value) : [];
+        this.selectedList = isSelectAll ? this.cacheOptions.map((v) => v.value) : [];
     }
 
     onClear() {
@@ -196,11 +241,15 @@ export default class RoboSimpleMultiSelect extends Vue {
         font-size: 14px;
         color: #6e768e;
 
-        .select-all {
+        .option-header {
             height: 40px;
             line-height: 40px;
             padding: 0 16px;
             border-bottom: 1px solid #edf1f6;
+
+            &.hide-border {
+                border-bottom: none;
+            }
         }
 
         .option-item {
@@ -216,6 +265,11 @@ export default class RoboSimpleMultiSelect extends Vue {
             &:hover {
                 background: #fbfcfe;
             }
+        }
+
+        .empty {
+            text-align: center;
+            color: #9fafc3;
         }
     }
 

@@ -2,7 +2,7 @@
     <div class="page-container">
         <el-card header="Robo Select All">
             <robo-select-all :value.sync="checked" @select-all="onSelectAll" @save="onSave" @clear="onClear" />
-            <p>checked：{{ checked }}</p>
+            <p style="margin-top: 10px;">checked：{{ checked }}</p>
         </el-card>
     </div>
 </template>

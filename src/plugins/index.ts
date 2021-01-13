@@ -1,2 +1,3 @@
 import './element.ts';
-import './robo-plugin';
+import './robo-component-plugin';
+import './robo-option-cache/index';

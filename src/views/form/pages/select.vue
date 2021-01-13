@@ -1,6 +1,43 @@
 <template>
     <div class="page-container">
-        <el-card header="简单多选">
+        <el-card header="基础用法">
+            <el-select v-model="value1" placeholder="请选择">
+                <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                ></el-option>
+            </el-select>
+            <el-select v-model="value1" placeholder="请选择" size="small">
+                <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                ></el-option>
+            </el-select>
+            <el-select v-model="value1" placeholder="请选择" size="mini">
+                <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                ></el-option>
+            </el-select>
+        </el-card>
+        <el-card header="空选项">
+            <el-select v-model="value2" placeholder="请选择">
+                <el-option v-for="item in []" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+            <el-select v-model="value2" placeholder="请选择" size="small">
+                <el-option v-for="item in []" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+            <el-select v-model="value2" placeholder="请选择" size="mini">
+                <el-option v-for="item in []" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+        </el-card>
+        <el-card header="多选 - Tag形式（特殊形式使用 Robo Simple Multi Select）">
             <el-select v-model="value3" multiple placeholder="请选择">
                 <el-option
                     v-for="item in options"
@@ -27,7 +64,7 @@
             </el-select>
         </el-card>
         <el-card header="前置图标">
-            <el-select v-model="value" class="select-1" placeholder="请选择">
+            <el-select v-model="value4" class="select-1" placeholder="请选择">
                 <div slot="prefix">项目：</div>
                 <el-option
                     v-for="item in options"
@@ -36,7 +73,7 @@
                     :value="item.value"
                 ></el-option>
             </el-select>
-            <el-select v-model="value" class="select-2" placeholder="请选择" size="small">
+            <el-select v-model="value4" class="select-2" placeholder="请选择" size="small">
                 <div slot="prefix">车辆属性：</div>
                 <el-option
                     v-for="item in options"
@@ -45,7 +82,7 @@
                     :value="item.value"
                 ></el-option>
             </el-select>
-            <el-select v-model="value" placeholder="请选择" size="mini">
+            <el-select v-model="value4" placeholder="请选择" size="mini">
                 <robo-symbol-icon slot="prefix" href="icon-search"></robo-symbol-icon>
                 <el-option
                     v-for="item in options"
@@ -56,7 +93,7 @@
             </el-select>
         </el-card>
         <el-card header="有禁用选项">
-            <el-select v-model="value2" placeholder="请选择">
+            <el-select v-model="value5" placeholder="请选择">
                 <el-option
                     v-for="item in optionsWithDisable"
                     :key="item.value"
@@ -65,7 +102,7 @@
                     :disabled="item.disabled"
                 ></el-option>
             </el-select>
-            <el-select v-model="value2" placeholder="请选择" size="small">
+            <el-select v-model="value5" placeholder="请选择" size="small">
                 <el-option
                     v-for="item in optionsWithDisable"
                     :key="item.value"
@@ -74,7 +111,7 @@
                     :disabled="item.disabled"
                 ></el-option>
             </el-select>
-            <el-select v-model="value2" placeholder="请选择" size="mini">
+            <el-select v-model="value5" placeholder="请选择" size="mini">
                 <el-option
                     v-for="item in optionsWithDisable"
                     :key="item.value"
@@ -85,7 +122,7 @@
             </el-select>
         </el-card>
         <el-card header="禁用状态">
-            <el-select v-model="value2" disabled placeholder="请选择">
+            <el-select v-model="value6" disabled placeholder="请选择">
                 <el-option
                     v-for="item in optionsWithDisable"
                     :key="item.value"
@@ -93,7 +130,7 @@
                     :value="item.value"
                 ></el-option>
             </el-select>
-            <el-select v-model="value2" disabled placeholder="请选择" size="small">
+            <el-select v-model="value6" disabled placeholder="请选择" size="small">
                 <el-option
                     v-for="item in optionsWithDisable"
                     :key="item.value"
@@ -101,7 +138,7 @@
                     :value="item.value"
                 ></el-option>
             </el-select>
-            <el-select v-model="value2" disabled placeholder="请选择" size="mini">
+            <el-select v-model="value6" disabled placeholder="请选择" size="mini">
                 <el-option
                     v-for="item in optionsWithDisable"
                     :key="item.value"
@@ -111,7 +148,7 @@
             </el-select>
         </el-card>
         <el-card header="可清空">
-            <el-select v-model="value2" clearable placeholder="请选择">
+            <el-select v-model="value7" clearable placeholder="请选择">
                 <el-option
                     v-for="item in optionsWithDisable"
                     :key="item.value"
@@ -119,7 +156,7 @@
                     :value="item.value"
                 ></el-option>
             </el-select>
-            <el-select v-model="value2" clearable placeholder="请选择" size="small">
+            <el-select v-model="value7" clearable placeholder="请选择" size="small">
                 <el-option
                     v-for="item in optionsWithDisable"
                     :key="item.value"
@@ -127,7 +164,7 @@
                     :value="item.value"
                 ></el-option>
             </el-select>
-            <el-select v-model="value2" clearable placeholder="请选择" size="mini">
+            <el-select v-model="value7" clearable placeholder="请选择" size="mini">
                 <el-option
                     v-for="item in optionsWithDisable"
                     :key="item.value"
@@ -163,9 +200,13 @@ export default class ButtonPage extends Vue {
         {value: '选项4', label: '龙须面'}
     ];
 
-    value = '';
+    value1 = '';
     value2 = '';
     value3 = [];
+    value4 = '';
+    value5 = '';
+    value6 = '';
+    value7 = '';
 }
 </script>
 <style lang="scss">
