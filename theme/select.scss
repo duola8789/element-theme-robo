@@ -57,6 +57,18 @@
             }
         }
 
+        @include m(small) {
+            .el-select__caret {
+                font-size: 12px;
+            }
+        }
+
+        @include m(mini) {
+            .el-select__caret {
+                font-size: 12px;
+            }
+        }
+
         &.is-disabled {
             & .el-input__inner {
                 cursor: not-allowed;

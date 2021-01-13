@@ -20,18 +20,19 @@
             cursor: not-allowed;
 
             &:hover {
+                color: $--select-option-disabled-color;
                 background-color: $--color-white;
             }
         }
 
         &.hover,
         &:hover {
+            color: #344156;
             background-color: $--select-option-hover-background;
         }
 
         &.selected {
             color: $--select-option-selected-font-color;
-            font-weight: bold;
         }
     }
 }
