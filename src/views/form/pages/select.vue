@@ -37,7 +37,7 @@
                 <el-option v-for="item in []" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
         </el-card>
-        <el-card header="多选 - Tag形式（特殊形式使用 Robo Simple Multi Select）">
+        <el-card header="多选 - Tag形式（特殊形式使用 Robo Select Multi Simple）">
             <el-select v-model="value3" multiple placeholder="请选择">
                 <el-option
                     v-for="item in options"
@@ -63,7 +63,7 @@
                 ></el-option>
             </el-select>
         </el-card>
-        <el-card header="前置图标">
+        <el-card header="前置图标：需要配合 @include ele-select-prefix(x) 这个 mixin 实现，传入前置字符数">
             <el-select v-model="value4" class="select-1" placeholder="请选择">
                 <div slot="prefix">项目：</div>
                 <el-option

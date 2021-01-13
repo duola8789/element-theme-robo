@@ -63,7 +63,7 @@ import {TypeOptionsKeys} from '@/plugins/robo-option-cache/config';
 @Component({
     components: {RoboSelectAll}
 })
-export default class RoboSimpleMultiSelect extends Vue {
+export default class RoboSelectMultiSimple extends Vue {
     @Prop({type: [Array]}) options!: {value: any; label: string}[];
     @Prop({type: [Object, String]}) cacheKey!: TypeOptionsKeys;
 

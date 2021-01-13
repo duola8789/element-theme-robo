@@ -20,7 +20,7 @@ export const PAGE_CONFIGS: TypePageConfig[] = [
         componentPath: 'basic/index',
         children: [
             {path: 'button', componentPath: 'basic/pages/button', menuTitle: 'Ele Button'},
-            {path: 'icon', componentPath: 'basic/pages/button', menuTitle: 'Robo Symbol Icon'}
+            {path: 'icon', componentPath: 'basic/pages/symbol-icon', menuTitle: 'Robo Symbol Icon'}
         ]
     },
     {
@@ -33,11 +33,11 @@ export const PAGE_CONFIGS: TypePageConfig[] = [
             {path: 'select', componentPath: 'form/pages/select', menuTitle: 'Ele Select'},
             {path: 'select-all', componentPath: 'form/pages/select-all', menuTitle: 'Robo Select All'},
             {
-                path: 'simple-multi-select',
-                componentPath: 'form/pages/simple-multi-select',
-                menuTitle: 'Robo Simple Multi Select'
+                path: 'select-multi-simple',
+                componentPath: 'form/pages/select-multi-simple',
+                menuTitle: 'Robo Select Multi Simple'
             },
-            {path: 'complex-multi-select', componentPath: 'form/pages/select', menuTitle: 'Robo Complex Multi Select'}
+            {path: 'select-multi-complex', componentPath: 'form/pages/select', menuTitle: 'Robo Select Multi Complex'}
         ]
     },
     {

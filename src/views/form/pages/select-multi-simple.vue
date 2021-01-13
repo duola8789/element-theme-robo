@@ -1,20 +1,20 @@
 <template>
     <div class="page-container">
         <el-card header="基础用法">
-            <robo-simple-multi-select title="吃货食谱" :options="options" :value.sync="value1" />
+            <robo-select-multi-simple title="吃货食谱" :options="options" :value.sync="value1" />
             <p class="select-content">我要吃：{{ food1 }}</p>
         </el-card>
         <el-card header="不含标题">
-            <robo-simple-multi-select :hide-title="true" :options="options" :value.sync="value2" />
+            <robo-select-multi-simple :hide-title="true" :options="options" :value.sync="value2" />
             <p class="select-content">我要吃：{{ food2 }}</p>
         </el-card>
         <el-card header="空选项">
-            <robo-simple-multi-select :options="[]" :value.sync="value3" />
+            <robo-select-multi-simple :options="[]" :value.sync="value3" />
             <p class="select-content">吃个屁</p>
         </el-card>
-        <el-card header="使用缓存（与后台接口强耦合）">
-            <robo-simple-multi-select cache-key="recipe" :value.sync="value4" />
-            <robo-simple-multi-select cache-key="sport" :value.sync="value5" style="margin-left: 16px;" />
+        <el-card header="使用缓存（需要后台接口配合统一输出）">
+            <robo-select-multi-simple cache-key="recipe" :value.sync="value4" />
+            <robo-select-multi-simple cache-key="sport" :value.sync="value5" style="margin-left: 16px;" />
         </el-card>
     </div>
 </template>
@@ -22,10 +22,10 @@
 <script lang="ts">
 import {Component, Vue, Prop} from 'vue-property-decorator';
 
-import RoboSimpleMultiSelect from '@/components/robo-simple-multi-select/index.vue';
+import RoboSelectMultiSimple from '@/components/robo-select-multi-simple/index.vue';
 
 @Component({
-    components: {RoboSimpleMultiSelect}
+    components: {RoboSelectMultiSimple}
 })
 export default class ButtonPage extends Vue {
     @Prop({type: Number, default: 280}) width!: string;
