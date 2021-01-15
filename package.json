@@ -10,6 +10,7 @@
         "watch": "gulp watch",
         "prettier": "prettier --write '{src,theme}/**/*.{vue,ts,js,less,css,scss}'"
     },
+    "typings": "types/index.d.ts",
     "main": "index.js",
     "files": [
         "lib"
