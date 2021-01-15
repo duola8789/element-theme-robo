@@ -35,12 +35,3 @@
         }
     }
 }
-
-// ElementUI select 后置标题宽度
-@mixin ele-select-suffix($wordLength) {
-    .el-input.el-input--suffix {
-        .el-input__inner {
-            padding-right: 40px + $wordLength * 8;
-        }
-    }
-}

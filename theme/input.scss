@@ -241,8 +241,10 @@
             line-height: $--input-medium-height;
         }
 
-        .el-input__icon {
+        .el-input__icon,
+        .el-input__suffix {
             line-height: $--input-medium-height;
+            vertical-align: middle;
         }
     }
     @include m(small) {
@@ -253,8 +255,10 @@
             line-height: $--input-small-height;
         }
 
-        .el-input__icon {
+        .el-input__icon,
+        .el-input__suffix {
             line-height: $--input-small-height;
+            vertical-align: middle;
         }
     }
     @include m(mini) {
@@ -265,8 +269,10 @@
             line-height: $--input-mini-height;
         }
 
-        .el-input__icon {
+        .el-input__icon,
+        .el-input__suffix {
             line-height: $--input-mini-height;
+            vertical-align: middle;
         }
     }
 }
