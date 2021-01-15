@@ -26,7 +26,6 @@ import {Component, Vue, Prop, Watch, Ref} from 'vue-property-decorator';
 
 @Component
 export default class RoboOverflowText extends Vue {
-    @Prop({default: false, type: Boolean}) readonly force!: boolean;
     @Prop({default: true, type: Boolean}) readonly isSingleLine!: boolean;
     @Prop({default: 'hover', type: String}) readonly trigger!: string;
     @Prop({default: 'top', type: String}) readonly placement!: string;
@@ -34,10 +33,14 @@ export default class RoboOverflowText extends Vue {
     @Prop({default: 1, type: Number}) readonly linesCount!: number;
     @Prop({default: '', type: String}) readonly popperClass!: string;
     @Prop({default: '', type: String}) readonly icon!: string;
+    @Prop({default: false, type: Boolean}) readonly visible!: boolean;
 
     @Ref('content') readonly contentEl!: HTMLElement;
 
     isOverflow = false;
+
+    // 通过 visible 控制，只需要判断一次
+    isSetByVisible = false;
 
     get innerPopperClass() {
         if (this.popperClass) {
@@ -46,14 +49,31 @@ export default class RoboOverflowText extends Vue {
         return 'robo-overflow-default-popper-class';
     }
 
+    setIsOverflow() {
+        setTimeout(() => {
+            if (this.contentEl) {
+                this.isOverflow = this.contentEl.clientWidth < this.contentEl.scrollWidth;
+            }
+        });
+    }
+
     // 判断元素的 clientWidth 是否小于 scrollWidth，是的话说明溢出，需要剪切
     @Watch('content', {immediate: true})
-    onContentChange(newVal: string, oldVal: string) {
+    contentWatch(newVal: string, oldVal: string) {
         if (newVal !== oldVal) {
             this.isOverflow = false;
-            setTimeout(() => {
-                this.isOverflow = this.contentEl.clientWidth < this.contentEl.scrollWidth;
-            });
+            this.setIsOverflow();
+        }
+    }
+
+    // 适用于弹窗等不会立刻出现的情况
+    @Watch('visible')
+    visibleWatcher(newVal: string, oldVal: string) {
+        if (newVal !== oldVal) {
+            if (!this.isSetByVisible) {
+                this.setIsOverflow();
+                this.isSetByVisible = true;
+            }
         }
     }
 }
