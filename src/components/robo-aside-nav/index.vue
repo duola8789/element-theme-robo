@@ -6,7 +6,7 @@
                 <robo-symbol-icon class="collapse-icon" href="icon-view-headline" />
             </div>
         </div>
-        <robo-nav-menu :is-collapsed="isCollapsed" :menus="menus" />
+        <robo-nav-menu :is-collapsed="isCollapsed" :menus="menus" :text-overflow="textOverflow" />
     </el-aside>
 </template>
 
@@ -19,6 +19,7 @@ import {TypeMenuConfig} from '@/components/robo-aside-nav-menu/types';
 @Component({components: {RoboNavMenu}})
 export default class RoboAsideNav extends Vue {
     @Prop({type: Array, required: true}) readonly menus!: TypeMenuConfig[];
+    @Prop({type: Boolean, default: false}) readonly textOverflow!: boolean;
 
     isCollapsed: boolean = false;
 }
