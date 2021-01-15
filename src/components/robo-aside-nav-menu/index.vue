@@ -5,6 +5,8 @@
         :collapse="isCollapsed"
         :default-active="defaultActive"
         :unique-opened="false"
+        @open="onOpen"
+        @close="onClose"
     >
         <template v-for="menu in menus">
             <!-- 有子菜单 -->
@@ -21,15 +23,20 @@
                         :class="textOverflow ? '' : 'text-overflow'"
                         :title="textOverflow ? '' : item.title"
                     >
-                        <robo-overflow-text v-if="textOverflow" :force="true" :content="item.title" />
-                        <span v-else>{{ item.title }}</span>
+                        <robo-overflow-text
+                            v-if="textOverflow"
+                            :content="item.title"
+                            :visible="openedPath.includes(menu.path)"
+                            placement="right"
+                        />
+                        <span v-else>{{ defaultActive.startsWith(menu.path) }}</span>
                     </el-menu-item>
                 </el-submenu>
             </template>
             <!-- 没有子菜单 -->
             <template v-else>
                 <el-menu-item :key="menu.path" :index="menu.path">
-                    <robo-symbol-icon :href="menuIcon(menu.icon, menu.path)" />
+                    <robo-symbol-icon :href="menuIcon(menu.icon, menu.path)" placement="right" />
                     <span slot="title">{{ menu.title }}</span>
                 </el-menu-item>
             </template>
@@ -57,6 +64,7 @@ export default class RoboAsideNavMenu extends Vue {
     @Prop({type: Boolean, default: false}) readonly activeIcon!: boolean;
 
     defaultActive = '';
+    openedPath: string[] = [];
 
     // 与视觉同学的约定，导航选中时，替换为 icon-xxx-solid 的实心图标
     menuIcon(iconName: string, menuPath: string) {
@@ -69,6 +77,15 @@ export default class RoboAsideNavMenu extends Vue {
 
     getItemPath(parentPath: string, childPath: string) {
         return `${parentPath}${childPath.startsWith('/') ? childPath : '/' + childPath}`;
+    }
+
+    onOpen(indexPath: string) {
+        this.openedPath.push(indexPath);
+    }
+
+    onClose(indexPath: string) {
+        const index = this.openedPath.indexOf(indexPath);
+        index > -1 && this.openedPath.splice(index, 1);
     }
 
     @Watch('$route.path', {immediate: true})
