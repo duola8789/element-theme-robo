@@ -45,7 +45,6 @@ const hintNetError: TypeHintNetError = (code = 999, msg) => {
 export const loadingRequestHandler: TypeInterceptorReqHandler = {
     // 正常请求添加 loading
     onFulfilled: (config) => {
-        console.log(123123);
         // 除非传入 noGlobalLoading 参数，否则都会默认添加全局 loading
         if (!(config.extraInfo && config.extraInfo.noGlobalLoading)) {
             loadingCounter.addLoading();

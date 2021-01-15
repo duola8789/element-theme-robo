@@ -4,18 +4,18 @@
         :width="width"
         trigger="click"
         transition="el-zoom-in-top"
-        popper-class="robo-simple-multi-popper"
+        popper-class="robo-select-multi-simple-popper"
         @show="isInputActive = true"
         @hide="isInputActive = false"
     >
         <div
             slot="reference"
-            class="robo-simple-multi-reference"
+            class="robo-select-multi-simple-reference"
             :class="isInputActive ? 'is-active' : ''"
             :style="{width: width + 'px'}"
         >
-            <span v-if="!hideTitle && cacheTitle" class="robo-simple-multi-title">{{ cacheTitle }}</span>
-            <div class="robo-simple-multi-input">
+            <span v-if="!hideTitle && cacheTitle" class="robo-select-multi-simple-title">{{ cacheTitle }}</span>
+            <div class="robo-select-multi-simple-input">
                 <div v-if="inputValue" class="input-value-container">
                     <p v-if="isSelectAll" class="input-value-all">{{ inputValue }}</p>
                     <p v-else class="input-value">
@@ -27,9 +27,9 @@
                 </div>
                 <span v-else class="placeholder">{{ placeholder }}</span>
             </div>
-            <i class="robo-simple-multi-select-icon el-icon-arrow-up"></i>
+            <i class="robo-select-multi-simple-select-icon el-icon-arrow-up"></i>
         </div>
-        <div class="robo-simple-multi-content">
+        <div class="robo-select-multi-simple-content">
             <template>
                 <div class="option-header" :class="noOptions ? 'hide-border' : ''">
                     <robo-select-all
@@ -40,15 +40,12 @@
                     />
                     <p v-else class="empty">暂无数据</p>
                 </div>
-                <el-checkbox-group v-model="selectedList">
-                    <ul class="options-list">
-                        <li v-for="option in cacheOptions" :key="option.value" class="option-item">
-                            <el-checkbox :label="option.value">
-                                {{ option.label }}
-                            </el-checkbox>
-                        </li>
-                    </ul>
-                </el-checkbox-group>
+                <robo-select-multi-checkbox
+                    :options="options"
+                    :cache-key="cacheKey"
+                    :value.sync="value"
+                    direction="vertical"
+                />
             </template>
         </div>
     </el-popover>
@@ -58,10 +55,11 @@
 import {Component, Vue, Prop, Emit} from 'vue-property-decorator';
 
 import RoboSelectAll from '@/components/robo-select-all/index.vue';
+import RoboSelectMultiCheckbox from '@/components/robo-select-multi-checkbox/index.vue';
 import {TypeOptionsKeys} from '@/plugins/robo-option-cache/config';
 
 @Component({
-    components: {RoboSelectAll}
+    components: {RoboSelectAll, RoboSelectMultiCheckbox}
 })
 export default class RoboSelectMultiSimple extends Vue {
     @Prop({type: [Array]}) options!: {value: any; label: string}[];
@@ -74,6 +72,14 @@ export default class RoboSelectMultiSimple extends Vue {
     @Prop({type: String, default: '请选择'}) placeholder!: string;
 
     isInputActive = false;
+
+    get selectedList() {
+        return [...this.value];
+    }
+    set selectedList(newVal: Array<string | number>) {
+        this.emitUpdate(newVal);
+        this.emitChange(newVal);
+    }
 
     get cacheOptions() {
         if (Array.isArray(this.options)) {
@@ -100,14 +106,6 @@ export default class RoboSelectMultiSimple extends Vue {
             throw new Error(`配置中不存在 ${this.cacheKey}，需要提前配置！`);
         }
         return this.$roboOptions.cache[this.cacheKey].title;
-    }
-
-    get selectedList() {
-        return [...this.value];
-    }
-    set selectedList(newVal: Array<string | number>) {
-        this.emitUpdate(newVal);
-        this.emitChange(newVal);
     }
 
     get noOptions() {
@@ -152,7 +150,7 @@ export default class RoboSelectMultiSimple extends Vue {
 </script>
 
 <style lang="scss">
-.robo-simple-multi {
+.robo-select-multi-simple {
     &-reference {
         display: inline-flex;
         align-items: center;
@@ -172,7 +170,7 @@ export default class RoboSelectMultiSimple extends Vue {
         &.is-active {
             border-color: #1f66ff;
 
-            .robo-simple-multi-select-icon {
+            .robo-select-multi-simple-select-icon {
                 transform: rotateZ(0);
             }
         }
@@ -249,21 +247,6 @@ export default class RoboSelectMultiSimple extends Vue {
 
             &.hide-border {
                 border-bottom: none;
-            }
-        }
-
-        .option-item {
-            height: 40px;
-            line-height: 40px;
-            padding: 0 16px;
-            cursor: pointer;
-
-            .el-checkbox {
-                width: 100%;
-            }
-
-            &:hover {
-                background: #fbfcfe;
             }
         }
 

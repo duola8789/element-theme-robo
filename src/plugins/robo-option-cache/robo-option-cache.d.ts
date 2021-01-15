@@ -6,6 +6,7 @@ declare interface TypeRoboOptionItem {
 declare interface TypeRoboOption {
     title: string;
     serviceKey: string;
+    isRequested: boolean;
     options: TypeRoboOptionItem[];
 }
 

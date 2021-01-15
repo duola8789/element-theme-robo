@@ -11,7 +11,8 @@ export const INIT_OPTIONS_CACHE: TypeInitOptionsCache = Object.keys(OPTIONS_KEY_
         [v]: {
             title: OPTIONS_KEY_HASH[v as TypeOptionsKeys].defaultTitle,
             options: (OPTIONS_KEY_HASH[v as TypeOptionsKeys] as any).options || [],
-            serviceKey: OPTIONS_KEY_HASH[v as TypeOptionsKeys].serviceKey
+            serviceKey: OPTIONS_KEY_HASH[v as TypeOptionsKeys].serviceKey,
+            isRequested: false
         }
     };
 }, {} as TypeInitOptionsCache);
@@ -30,5 +31,15 @@ export type TypeInitOptionsCache = TypeRoboOptionCache<TypeOptionsKeyHash>;
 export interface TypeOptionsResItem {
     name: string;
     key: string;
-    items: {id: string | number; name: string}[];
+    items: {id: number | string; name: string}[];
 }
+
+export interface TypeCacheConfigItem {
+    cacheKey: TypeOptionsKeys;
+    options: TypeRoboOptionItem[];
+    groupTitle?: string;
+}
+
+export type TypeCacheConfigs = Array<TypeOptionsKeys | TypeCacheConfigItem>;
+
+export type TypeCacheValue = Record<TypeOptionsKeys, Array<string | number>>;

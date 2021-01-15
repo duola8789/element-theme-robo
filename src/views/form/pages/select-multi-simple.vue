@@ -27,7 +27,7 @@ import RoboSelectMultiSimple from '@/components/robo-select-multi-simple/index.v
 @Component({
     components: {RoboSelectMultiSimple}
 })
-export default class ButtonPage extends Vue {
+export default class SelectMultiSimple extends Vue {
     @Prop({type: Number, default: 280}) width!: string;
     @Prop({type: String, default: '标题名称'}) title!: string;
 

@@ -33,11 +33,20 @@ export const PAGE_CONFIGS: TypePageConfig[] = [
             {path: 'select', componentPath: 'form/pages/select', menuTitle: 'Ele Select'},
             {path: 'select-all', componentPath: 'form/pages/select-all', menuTitle: 'Robo Select All'},
             {
+                path: 'select-multi-checkbox',
+                componentPath: 'form/pages/select-multi-checkbox',
+                menuTitle: 'Robo Select Multi Checkbox'
+            },
+            {
                 path: 'select-multi-simple',
                 componentPath: 'form/pages/select-multi-simple',
                 menuTitle: 'Robo Select Multi Simple'
             },
-            {path: 'select-multi-complex', componentPath: 'form/pages/select', menuTitle: 'Robo Select Multi Complex'}
+            {
+                path: 'select-multi-complex',
+                componentPath: 'form/pages/select-multi-complex',
+                menuTitle: 'Robo Select Multi Complex'
+            }
         ]
     },
     {

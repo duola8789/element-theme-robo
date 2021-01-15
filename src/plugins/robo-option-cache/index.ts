@@ -26,12 +26,17 @@ class RoboOptionCache {
 
     async getOptions(keys: TypeOptionsKeys | TypeOptionsKeys[]) {
         const cacheKeys = Array.isArray(keys) ? keys : [keys];
-        const serviceKeys = [...new Set(cacheKeys)]
-            .filter((key) => getOptionReqKeys(key) && this.cache[key].options.length === 0)
-            .map((key) => getOptionReqKeys(key) as TypeOptionsKeys);
+        const filterKeys = [...new Set(cacheKeys)].filter(
+            (key) => getOptionReqKeys(key) && !this.cache[key].isRequested
+        );
+        const serviceKeys = filterKeys.map((key) => getOptionReqKeys(key) as string);
 
         if (serviceKeys.length > 0) {
             this.paramsQueue.push(...serviceKeys);
+
+            for (const key of filterKeys) {
+                this.cache[key].isRequested = true;
+            }
 
             if (this.actionTimer) {
                 clearTimeout(this.actionTimer);
@@ -66,7 +71,11 @@ class RoboOptionCache {
     }
 
     setOptions(key: TypeOptionsKeys, options: TypeRoboOptionItem[], title?: string) {
-        Vue.set(this.cache, key, {title: title || this.cache[key].title, options});
+        this.cache[key] = {
+            ...this.cache[key],
+            title: title || this.cache[key].title,
+            options
+        };
     }
 }
 
