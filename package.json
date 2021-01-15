@@ -10,9 +10,10 @@
         "watch": "gulp watch",
         "prettier": "prettier --write '{src,theme}/**/*.{vue,ts,js,less,css,scss}'"
     },
-    "main": "lib/index.css",
+    "main": "index.js",
     "files": [
-        "lib"
+        "lib",
+        "src/components"
     ],
     "dependencies": {
         "axios": "^0.21.1",
