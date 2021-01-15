@@ -13,7 +13,9 @@
     "typings": "types/index.d.ts",
     "main": "index.js",
     "files": [
-        "lib"
+        "lib",
+        "types",
+        "src/components"
     ],
     "dependencies": {
         "axios": "^0.21.1",
