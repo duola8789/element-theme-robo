@@ -13,7 +13,8 @@
     "main": "index.js",
     "files": [
         "lib",
-        "src/components"
+        "src/components",
+        "types"
     ],
     "dependencies": {
         "axios": "^0.21.1",
