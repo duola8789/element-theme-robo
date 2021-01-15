@@ -18,6 +18,19 @@ function compile() {
         .pipe(dest('./lib'));
 }
 
+function compileRoboUI() {
+    return src('./theme/robo-ui/*.scss')
+        .pipe(sass.sync())
+        .pipe(
+            autoprefixer({
+                browsers: ['ie > 9', 'last 2 versions'],
+                cascade: false
+            })
+        )
+        .pipe(cssmin())
+        .pipe(dest('./lib/robo-ui'));
+}
+
 function copyfont() {
     return src('./theme/fonts/**')
         .pipe(cssmin())
@@ -25,7 +38,7 @@ function copyfont() {
 }
 
 function watchTheme() {
-    watch('./theme/**/*.scss', series(compile));
+    watch('./theme/**/*.scss', series(compile, compileRoboUI));
 }
 
 exports.build = series(compile, copyfont);

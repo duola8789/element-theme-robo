@@ -1,5 +1,5 @@
 <template>
-    <svg class="robo-icon" aria-hidden="true">
+    <svg class="robo-font-icon" aria-hidden="true">
         <use ref="iconFont" :xlink:href="iconHref"></use>
     </svg>
 </template>
@@ -10,7 +10,7 @@ import {Component, Vue, Prop, Watch, Ref} from 'vue-property-decorator';
 const DEFAULT_ICON: string = 'icon-sentiment-very-dissa';
 
 @Component
-export default class RoboSymbolIcon extends Vue {
+export default class RoboFontIcon extends Vue {
     @Prop({required: true, type: String}) href!: string;
 
     @Ref() iconFont!: HTMLElement;
@@ -30,7 +30,7 @@ export default class RoboSymbolIcon extends Vue {
 </script>
 
 <style scoped lang="scss">
-.robo-icon {
+.robo-font-icon {
     color: inherit;
 
     @include nice-btn();

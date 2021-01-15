@@ -5,4 +5,4 @@
 import Vue from 'vue';
 import RoboSymbolIcon from '@/components/robo-symbol-icon/index.vue';
 
-Vue.component(RoboSymbolIcon.name, RoboSymbolIcon);
+Vue.component('RoboSymbolIcon', RoboSymbolIcon);

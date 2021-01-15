@@ -75,6 +75,16 @@
     }
 }
 
+/* BEM
+ -------------------------- */
+@mixin b2($block) {
+    $B: $roboNamespace + '-' + $block !global;
+
+    .#{$B} {
+        @content;
+    }
+}
+
 @mixin e($element) {
     $E: $element !global;
     $selector: &;
