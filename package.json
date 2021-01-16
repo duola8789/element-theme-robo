@@ -8,19 +8,18 @@
         "build-theme": "gulp build",
         "lint": "vue-cli-service lint",
         "watch": "gulp watch",
-        "prettier": "prettier --write '{src,theme}/**/*.{vue,ts,js,less,css,scss}'"
+        "prettier": "prettier --write '{src,theme}/**/*.{vue,ts,js,less,css,scss}'",
+        "update": "yarn upgrade robo-ui"
     },
-    "typings": "types/index.d.ts",
     "main": "index.js",
     "files": [
-        "lib",
-        "types",
-        "src/components"
+        "lib"
     ],
     "dependencies": {
         "axios": "^0.21.1",
         "core-js": "^3.6.5",
         "element-ui": "^2.4.5",
+        "robo-ui": "git+https://github.com/duola8789/robo-ui.git",
         "vue": "^2.6.11",
         "vue-property-decorator": "^8.3.0",
         "vue-router": "^3.4.9",
