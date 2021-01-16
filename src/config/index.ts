@@ -64,6 +64,11 @@ export const PAGE_CONFIGS: TypePageConfig[] = [
         menuTitle: 'Navigation',
         menuIcon: 'icon-signal-wifi-statusba2',
         children: [{path: 'breadcrumb', componentPath: 'breadcrumb', menuTitle: 'Breadcrumb'}]
+    },
+    {
+        path: '*',
+        componentPath: 'common/error-page',
+        hideInMenu: true
     }
 ];
 

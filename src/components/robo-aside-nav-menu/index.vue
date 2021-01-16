@@ -29,7 +29,7 @@
                             :visible="openedPath.includes(menu.path)"
                             placement="right"
                         />
-                        <span v-else>{{ defaultActive.startsWith(menu.path) }}</span>
+                        <span v-else>{{ menu.title }}</span>
                     </el-menu-item>
                 </el-submenu>
             </template>
