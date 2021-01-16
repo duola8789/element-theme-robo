@@ -53,7 +53,7 @@
 
     @include utils-clearfix;
 
-    & .robo-icon {
+    & svg[class$='-icon'] {
         font-size: 16px;
         color: inherit;
         margin-right: 16px;
@@ -147,7 +147,7 @@
     @include m(collapse) {
         width: 64px;
 
-        & .robo-iconZ {
+        & svg[class$='-icon'] {
             margin-right: 0;
         }
 
