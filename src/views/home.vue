@@ -1,5 +1,5 @@
 <template>
-    <h1>Element Theme Robo & Robo Components</h1>
+    <h1>Element Theme For RoboX</h1>
 </template>
 
 <script lang="ts">

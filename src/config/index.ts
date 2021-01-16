@@ -18,10 +18,7 @@ export const PAGE_CONFIGS: TypePageConfig[] = [
         menuTitle: 'Basic',
         menuIcon: 'icon-storage',
         componentPath: 'basic/index',
-        children: [
-            {path: 'button', componentPath: 'basic/pages/button', menuTitle: 'Ele Button'},
-            {path: 'icon', componentPath: 'basic/pages/symbol-icon', menuTitle: 'Robo Symbol Icon'}
-        ]
+        children: [{path: 'button', componentPath: 'basic/pages/button', menuTitle: 'Ele Button'}]
     },
     {
         path: '/form',
